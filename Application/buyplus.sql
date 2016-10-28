@@ -1,5 +1,6 @@
 create database buyplus3 charset=utf8;
 
+use buyplus3;
 -- 会员表
 create table kang_member
 (
@@ -121,3 +122,20 @@ insert into kang_category values (34, '小说', 16, 0, '', '', 1, 0, '', '', '')
 insert into kang_category values (35, '成功学', 16, 0, '', '', 1, 0, '', '', '');
 insert into kang_category values (36, '经济金融', 16, 0, '', '', 1, 0, '', '', '');
 insert into kang_category values (37, '免费', 16, 0, '', '', 1, 0, '', '', '');
+
+
+
+create table kang_brand
+(
+	brand_id int unsigned auto_increment,
+	title varchar(32) not null default '', -- 品牌名
+	logo varchar(255) not null default '', -- 品牌logo
+	logo_ori varchar(255) not null default '', -- 品牌logo原始图像文件
+	sort_number int not null default 0, -- 排序
+
+	created_at int not null default 0, -- 创建时间
+	updated_at int not null default 0, -- 修改时间
+	primary key (brand_id),
+	index (sort_number),
+	index (title)
+) charset=utf8;
