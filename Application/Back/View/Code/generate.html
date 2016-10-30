@@ -32,7 +32,7 @@
           </h3>
         </div>
         <div class="panel-body">
-          <form action="{:U('add')}" method="post" enctype="multipart/form-data" id="form-brand" class="form-horizontal">
+          <form action="{:U('generate')}" method="post" enctype="multipart/form-data" id="form-brand" class="form-horizontal">
             <ul class="nav nav-tabs">
               <li class="active">
                 <a href="#tab-general" data-toggle="tab">基本信息</a>
@@ -41,30 +41,27 @@
             <div class="tab-content">
               <div class="tab-pane active" id="tab-general">
                 <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-name2">品牌</label>
+                  <label class="col-sm-2 control-label" for="input-module">所属的模块</label>
                   <div class="col-sm-10">
-                    <input type="text" name="title" value="" placeholder="品牌" id="input-title" class="form-control" />
+                    <input type="text" name="module" value="Back" placeholder="品牌" id="input-module" class="form-control" />
                   </div>
                 </div>
               
              
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-sort_number">排序</label>
+                  <label class="col-sm-2 control-label" for="input-table">表名</label>
                   <div class="col-sm-10">
-                    <input type="text" name="sort_number" value="0" placeholder="排序" id="input-sort_number" class="form-control" />
+                    <input type="text" name="table" value="" placeholder="生成CRUD操作的逻辑表名" id="input-table" class="form-control" />
                   </div>
                 </div>
-
-              
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">图片</label>
+                  <label class="col-sm-2 control-label" for="input-table_title">表名-标题</label>
                   <div class="col-sm-10">
-                    <input id="input-logo_ori" type="file" name="logo_ori" class="">
+                    <input type="text" name="table_title" value="" placeholder="表标题" id="input-table_title" class="form-control" />
                   </div>
                 </div>
    
-              </div>
-             
+              </div>             
             </div>
           </form>
         </div>

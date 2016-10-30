@@ -4,7 +4,7 @@ namespace Back\Controller;
 use Think\Controller;
 use Think\Page;
 
-class BrandController extends Controller
+class EventController extends Controller
 {
     /**
      * 添加动作
@@ -14,8 +14,8 @@ class BrandController extends Controller
         // 判断是否为POST数据提交
         if (IS_POST) {
             // 数据处理
-            // $model = M('Brand');
-            $model = D('Brand');
+            // $model = M('Event');
+            $model = D('Event');
             $result = $model->create();
 
             if (!$result) {
@@ -41,28 +41,29 @@ class BrandController extends Controller
     public function listAction()
     {
 
-        $model = M('Brand');  
+        $model = M('Event');  
 
         // 分页, 搜索, 排序等
         // 搜索, 筛选, 过滤
         // 判断用户传输的搜索条件, 进行处理
         // $filter 表示用户输入的内容
         // $cond 表示用在模型中查询条件
-        $cond = [];// 初始条件
-        $filter['filter_title'] = I('get.filter_title', '', 'trim');
-        if($filter['filter_title'] !== '') {
-            $cond['title'] = ['like', '%'.$filter['filter_title'].'%'];// 适当考虑索引问题
-        }
+        $cond = $filter = [];// 初始条件
+        // 在生成代码的基础上, 自定义完成搜索条件
+        // 
         // 分配筛选数据, 到模板, 为了展示搜索条件
         $this->assign('filter', $filter);
 
         // 排序
+        $sort = $order = [];
         // 考虑用户所传递的排序方式和字段
-        $order['field'] = I('get.field', 'sort_number', 'trim');// 初始排序, 字段
-        $order['type'] = I('get.type', 'asc', 'trim');// 初始排序, 方式
-        
-        $sort = [$order['field'] => $order['type']];
-        // $sort = $order['field'] . ' ' . $order['type'];
+        // 在生成代码的基础上,自定义默认的排序字段(假设,表中存在sort_number字段, 不存在需要修改)
+        // $order['field'] = I('get.field', 'sort_number', 'trim');// 初始排序, 字段
+        // $order['type'] = I('get.type', 'asc', 'trim');// 初始排序, 方式
+
+        if (!empty($order)) {
+            $sort = $order['field'] . ' ' . $order['type'];
+        }
         $this->assign('order', $order);
 
         // 分页
@@ -98,7 +99,7 @@ class BrandController extends Controller
 
         if (IS_POST) {
 
-            $model = D('Brand');
+            $model = D('Event');
             $result = $model->create();
 
             if (!$result) {
@@ -115,8 +116,8 @@ class BrandController extends Controller
         } else {
 
             // 获取当前编辑的内容
-            $brand_id = I('get.brand_id', '', 'trim');
-            $this->assign('row', M('Brand')->find($brand_id));
+            $event_id = I('get.event_id', '', 'trim');
+            $this->assign('row', M('Event')->find($event_id));
 
             // 展示模板
             $this->display();
@@ -133,6 +134,7 @@ class BrandController extends Controller
         $operate = I('post.operate', 'delete', 'trim');
         // 确定ID列表
         $selected = I('post.selected', []);
+        
         // 如果为空数组, 表示没有选择, 则立即跳转回列表页.
         if (empty($selected)) {
             $this->redirect('list', [], 0);
@@ -142,8 +144,8 @@ class BrandController extends Controller
         switch ($operate) {
             case 'delete':
                 // 使用in条件, 删除全部的品牌
-                $cond = ['brand_id' => ['in', $selected]];
-                M('Brand')->where($cond)->delete();
+                $cond = ['event_id' => ['in', $selected]];
+                M('Event')->where($cond)->delete();
                 $this->redirect('list', [], 0);
                 break;
             default:
@@ -177,7 +179,7 @@ class BrandController extends Controller
                     $cond['brand_id'] = ['neq', $brand_id];
                 }
                 // 获取模型后, 利用条件获取匹配的记录数
-                $count = M('Brand')->where($cond)->count();
+                $count = M('Event')->where($cond)->count();
                 // 如果记录数>0, 条件为真, 说明存在记录, 重复, 验证未通过, 响应false
                 echo $count ? 'false' : 'true';
             break;
