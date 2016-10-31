@@ -1,0 +1,111 @@
+<extend name="Layout/Back" />
+
+<block name="content" >
+
+    <div id="content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <div class="pull-right">
+
+                   <!--  <a href="{:U('add')}" data-toggle="tooltip" title="新增" class="btn btn-primary"> <i class="fa fa-plus"></i>
+                    </a> -->
+
+                    <!-- <button type="button" data-toggle="tooltip" title="删除" class="btn btn-danger" onclick="('input[name*=\'selected\']:checked').size()>0 && confirm('确认？') ? $('#form-Setting').submit() : false;"> <i class="fa fa-trash-o"></i>
+                    </button> -->
+
+                    <button type="submit" form="form-Setting" data-toggle="tooltip" title="更新" class="btn btn-primary" onclick="">
+                        <i class="fa fa-save"></i>
+                    </button>
+
+                </div>
+                <h1>配置项管理</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{U('Manage/index')}">首页</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">配置项列表</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-list"></i>
+                        配置项列表
+                    </h3>
+                </div>
+                <div class="panel-body">
+
+                    <form action="{:U('update')}" method="post" enctype="multipart/form-data" id="form-Setting" class="form-horizontal">
+
+                        <ul class="nav nav-tabs">
+                        <volist name="group_rows" id="group">
+                            <if condition="$i eq 1">
+                            <li class="active">
+                            <else />
+                            <li class="">
+                            </if>
+                              <a href="#tab-{$group['setting_group_id']}" data-toggle="tab" aria-expanded="false">{$group['group_title']}</a>
+                            </li>
+                        </volist>
+                        </ul>
+
+                        <div class="tab-content">
+                        <volist name="group_setting" id="g">                            
+                            <!-- 一组配置项列表 -->
+                            <if condition="$i eq 1">
+                            <div class="tab-pane active" id="tab-{$key}">
+                            <else />
+                            <div class="tab-pane" id="tab-{$key}">
+                            </if>
+                                
+                                <volist name="g" id="setting">
+                                <!-- 一个配置项 -->
+                                <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-{$setting['key']}">{$setting['title']}</label>
+                                    <div class="col-sm-10">
+                                    <!-- setting-10,  -->
+                                    <!-- setting[10], $_POST['setting'] -->
+                                        <if condition="$setting['type_title'] eq 'text'">
+                                            <input name="setting[{$setting['setting_id']}]" value="{$setting['value']}" placeholder="{$setting['title']}" id="input-{$setting['key']}" class="form-control" type="text">
+                                        <elseif condition="$setting['type_title'] eq 'textarea'"/>
+                                            <textarea name="setting[{$setting['setting_id']}]" rows="5" placeholder="{$setting['title']}" id="input-{$setting['key']}" class="form-control">{$setting['value']}</textarea>
+
+                                        <elseif condition="$setting['type_title'] eq 'select'"/>
+                                            <select name="setting[{$setting['setting_id']}]" id="input-{$setting['key']}" class="form-control">
+                                                <volist name="setting['option']" id="option">
+                                                <option value="{$option['setting_option_id']}"
+                                                <if condition="$option['setting_option_id'] eq $setting['value']">selected</if>
+                                                >{$option['option_title']}</option>
+                                                </volist>
+                                        </select>
+
+                                        <elseif condition="$setting['type_title'] eq 'select-multi'"/>
+                                            <select name="setting[{$setting['setting_id']}][]" id="input-{$setting['key']}" class="form-control" multiple rows="5">
+                                                <volist name="setting['option']" id="option">
+                                                <option value="{$option['setting_option_id']}"
+                                                <if condition="in_array($option['setting_option_id'], $setting['value_list'])">selected</if>
+                                                >{$option['option_title']}</option>
+                                                </volist>
+                                            </select>
+                                        </if>
+
+                                    </div>
+                                </div>
+                                <!-- 一个配置项结束 -->
+                                </volist>
+                              
+                            </div>
+                            <!-- 一组配置项结束 -->
+                        </volist>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

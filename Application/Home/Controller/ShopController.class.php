@@ -11,6 +11,8 @@ class ShopController extends Controller
     public function indexAction()
     {
         // 展示首页模板
+        // 如果需要获取配置的商店标题
+        $shop_title = getConfig('shop_title', '败家');
     }
 
     /**
