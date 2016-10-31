@@ -20,10 +20,10 @@ class GoodsController extends Controller
                         ->find($goods_id);
         // 获取索引管理对象
         require VENDOR_PATH . 'XunSearch/lib/XS.php';
-        $xs = new XS('goods');
+        $xs = new \XS('goods');
         $index = $xs->index;
         // 索引文档对象处理
-        $doc = new XSDocument;
+        $doc = new \XSDocument;
         $doc->setFields($row);
         // 添加索引
         $index->add($doc);
