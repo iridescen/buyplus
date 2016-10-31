@@ -3,6 +3,8 @@ namespace Back\Controller;
 
 use Think\Controller;
 use Think\Page;
+use Think\Upload;
+use Think\Image;
 
 class BrandController extends Controller
 {
@@ -14,7 +16,38 @@ class BrandController extends Controller
         // 判断是否为POST数据提交
         if (IS_POST) {
             // 数据处理
-            // $model = M('Brand');
+            // 文件上传
+            $t_upload = new Upload;
+            // 配置上传的属性
+            $t_upload->rootPath = APP_PATH . 'Upload/';
+            $t_upload->savePath = 'Brand/';
+            $t_upload->exts = ['jpeg', 'jpg', 'gif', 'png'];
+            $t_upload->maxSize = 1*1024*1024;// 1M
+
+            // 执行上传
+            $upload_info = $t_upload->uploadOne($_FILES['logo_ori']);
+            // dump($upload_info); die;
+            if ($upload_info) {
+                // LOGO上传成功
+                $_POST['logo_ori'] = $upload_info['savepath'] . $upload_info['savename'];
+                // 制作缩略图
+                $t_image = new Image;
+                $t_image->open(APP_PATH . 'Upload/' . $_POST['logo_ori']);
+                $w = getConfig('brand_thumb_width', 100);
+                $h = getConfig('brand_thumb_height', 100);
+                // 确定缩略图存储位置
+                $thumb_root = './Public/Thumb/';
+                $thumb_path =  $thumb_root . $upload_info['savepath'];
+                // 保证目录存在
+                if (! is_dir ($thumb_path)) {
+                    mkdir ($thumb_path, 0775, true);
+                }
+                $thumb_file = $thumb_path . 'thumb_' . $w . 'x'. $h . '_' . $upload_info['savename'];
+                $t_image->thumb($w, $h)->save($thumb_file);
+                // 记录缩略图地址
+                $_POST['logo'] = $upload_info['savepath'] . 'thumb_' . $w . 'x'. $h . '_' . $upload_info['savename'];
+            }
+
             $model = D('Brand');
             $result = $model->create();
 

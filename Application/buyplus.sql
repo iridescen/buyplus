@@ -181,6 +181,10 @@ insert into kang_setting values (1, 'shop_title', 'BuyPlus(败家Shopping)', '�
 insert into kang_setting values (2, 'allow_comment', '5', '是否允许商品评论', 3, 1, 0);
 insert into kang_setting values (3, 'use_captcha', '1,3', '哪些页面使用验证码', 4, 2, 0);
 insert into kang_setting values (4, 'mate_description', 'BuyPlus(败家Shopping), 用BuyPlus，不败家！', 'mate描述description', 2, 1, 0);
+insert into kang_setting values (5, 'brand_thumb_width', '66', '品牌缩略图宽', 1, 1, 0);
+insert into kang_setting values (6, 'brand_thumb_height', '66', '品牌缩略图高', 1, 1, 0);
+
+
 -- 配置系统选项预设值
 create table kang_setting_option (
 	setting_option_id int unsigned auto_increment,-- 选项预设值的option value="option_id"
