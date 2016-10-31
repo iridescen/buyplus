@@ -13,7 +13,7 @@ class GoodsController extends Controller
     protected function addIndex($goods_id)
     {
         // 利用商品ID, 获取需要加入到索引中的文档信息
-        $row = M('Goods')->field('goods_id, name, UPC, description, b.title brand_title, c.title category_title, price, quantity, date_avaliable, sort_number')
+        $row = M('Goods')->field('goods_id, name, UPC, description, b.title brand_title, c.title category_title, price, quantity, date_available, sort_number')
                         ->alias('g')
                         ->join('left join __BRAND__ b using(brand_id)')
                         ->join('left join __CATEGORY__ c using(category_id)')
