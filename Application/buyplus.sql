@@ -300,3 +300,18 @@ create table kang_goods (
 	index (price),
 	unique key (UPC)
 ) charset=utf8;
+
+
+-- 商品图片
+create table kang_goods_image (
+	goods_image_id int unsigned auto_increment,
+	goods_id int unsigned not null default 0, -- 对应商品ID
+	image varchar(255) not null default '', -- 商品原始图像
+	image_small varchar(255) not null default '', -- 商品小图像
+	image_medium varchar(255) not null default '', -- 商品中图像
+	image_big varchar(255) not null default '', -- 商品大图像
+	sort_number int not null default 0, -- 排序
+	primary key (goods_image_id),
+	index (goods_id),
+	index (sort_number)
+) charset=utf8;
