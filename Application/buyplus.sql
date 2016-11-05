@@ -315,3 +315,96 @@ create table kang_goods_image (
 	index (goods_id),
 	index (sort_number)
 ) charset=utf8;
+
+
+-- 商品属性类型
+create table kang_goods_type (
+	goods_type_id int unsigned auto_increment,
+	title varchar(32) not null default '', -- 标题
+	primary key (goods_type_id)
+) charset=utf8;
+insert into kang_goods_type values (1, '笔记本');
+insert into kang_goods_type values (2, '眼镜');
+insert into kang_goods_type values (3, '图书');
+
+	-- 商品属性
+create table kang_goods_attribute (
+	goods_attribute_id int unsigned auto_increment,
+	title varchar(32) not null default '', -- 标题
+	sort_number int not null default 0, -- 排序
+	goods_type_id int not null default 0, -- 所属商品类型ID
+	attribute_type_id int not null default 0, -- 所属类型ID
+	primary key (goods_attribute_id),
+	index (goods_type_id),
+	index (attribute_type_id)
+) charset=utf8;
+insert into kang_goods_attribute values (null, '内存', 0, 1, 2);
+insert into kang_goods_attribute values (null, '镜片材质', 0, 2, 1);
+insert into kang_goods_attribute values (null, '镜框材质', 0, 2, 1);
+insert into kang_goods_attribute values (null, '作者', 0, 3, 1);
+insert into kang_goods_attribute values (null, '出版社', 0, 3, 1);
+insert into kang_goods_attribute values (null, '页数', 0, 3, 1);
+
+
+-- 商品与属性关联
+create table kang_goods_attribute_value (
+	goods_attribute_value_id int unsigned auto_increment,
+	goods_id int unsigned not null default 0, -- 商品ID
+	goods_attribute_id int unsigned not null default 0, -- 属性ID
+	value varchar(255) not null default '', -- 商品属性的值
+	is_option tinyint not null default 0, -- 是否是可选项
+	primary key (goods_attribute_value_id),
+	index (goods_id),
+	index (goods_attribute_id)
+) charset=utf8;
+
+
+-- 商品属性类型
+create table kang_attribute_type (
+	attribute_type_id int unsigned auto_increment,
+	title varchar(32) not null default '', -- 类型名
+	primary key (attribute_type_id)
+) charset=utf8;
+insert into kang_attribute_type values (1, 'text'); -- 文本
+insert into kang_attribute_type values (2, 'select'); -- 选择(多选)
+
+-- 商品选项类属性的预设值
+create table kang_attribute_option (
+	attribute_option_id int unsigned auto_increment,
+	goods_attribute_id int unsigned not null default 0, -- 所属的商品属性
+	title varchar(255) not null default '', -- 预设值值部分
+	primary key (attribute_option_id),
+	index (goods_attribute_id)
+) charset=utf8;
+-- // 内存预设值测试数据
+insert into kang_attribute_option values (null, 1, '4G');
+insert into kang_attribute_option values (null, 1, '8G');
+insert into kang_attribute_option values (null, 1, '16G');
+insert into kang_attribute_option values (null, 1, '2G');
+insert into kang_attribute_option values (null, 1, '12G');
+insert into kang_attribute_option values (null, 1, '32G');
+
+
+-- 货品表
+create table kang_goods_product
+(
+	goods_product_id int unsigned auto_increment,
+	goods_id int unsigned not null default 0,
+	product_quantity int not null default 0, 
+	product_price decimal(10, 2) not null default 0.0,
+	price_operate enum('=', '-', '+') not null default '+',
+	enabled tinyint not null default 1,
+	primary key (goods_product_id),
+	index (goods_id)
+) charset=utf8;
+
+-- 货品选项表
+create table kang_product_option
+(
+	product_option_id int unsigned auto_increment,
+	goods_product_id int unsigned not null default 0,
+	attribute_option_id int unsigned not null default 0,
+	primary key (product_option_id),
+	index (goods_product_id),
+	index (attribute_option_id)
+)charset=utf8;
