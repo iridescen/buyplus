@@ -91,37 +91,37 @@ create table kang_category (
 
 insert into kang_category values (1, '未分类', 0, -1, '', '', 0, 0, '', '', '');
 insert into kang_category values (5, '眼镜', 0, 0, '', '', 1, 1, '', '', '');
-insert into kang_category values (6, '男士眼镜', 5, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (7, '女士眼镜', 5, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (8, '飞行员眼镜', 5, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (9, '驾驶镜', 5, 0,'', '',  1, 0, '', '', '');
-insert into kang_category values (10, '太阳镜', 5, 0, '', '', 1, 0, '', '', '');
+insert into kang_category values (6, '男士眼镜', 5, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (7, '女士眼镜', 5, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (8, '飞行员眼镜', 5, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (9, '驾驶镜', 5, 0,'', '',  1, 1, '', '', '');
+insert into kang_category values (10, '太阳镜', 5, 0, '', '', 1, 1, '', '', '');
 insert into kang_category values (11, '图书', 0, 0, '', '', 1, 1, '', '', '');
-insert into kang_category values (12, '历史', 11, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (14, '科技', 11, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (15, '计算机', 11, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (16, '电子书', 11, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (17, '科普', 14, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (18, '建筑', 14, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (19, '工业技术', 14, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (20, '电子通信', 14, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (21, '自然科学', 14, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (22, '互联网', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (23, '计算机编程', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (24, '硬件，攒机', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (25, '大数据', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (26, '移动开发', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (27, 'PHP', 15, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (28, '近代史', 12, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (29, '当代史', 12, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (30, '古代史', 12, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (31, '先秦百家', 12, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (32, '三皇五帝', 12, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (33, '励志', 16, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (34, '小说', 16, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (35, '成功学', 16, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (36, '经济金融', 16, 0, '', '', 1, 0, '', '', '');
-insert into kang_category values (37, '免费', 16, 0, '', '', 1, 0, '', '', '');
+insert into kang_category values (12, '历史', 11, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (14, '科技', 11, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (15, '计算机', 11, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (16, '电子书', 11, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (17, '科普', 14, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (18, '建筑', 14, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (19, '工业技术', 14, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (20, '电子通信', 14, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (21, '自然科学', 14, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (22, '互联网', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (23, '计算机编程', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (24, '硬件，攒机', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (25, '大数据', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (26, '移动开发', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (27, 'PHP', 15, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (28, '近代史', 12, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (29, '当代史', 12, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (30, '古代史', 12, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (31, '先秦百家', 12, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (32, '三皇五帝', 12, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (33, '励志', 16, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (34, '小说', 16, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (35, '成功学', 16, 0, '', '', 0, 0, '', '', '');
+insert into kang_category values (36, '经济金融', 16, 0, '', '', 1, 1, '', '', '');
+insert into kang_category values (37, '免费', 16, 0, '', '', 1, 1, '', '', '');
 
 
 create table kang_brand
@@ -408,3 +408,102 @@ create table kang_product_option
 	index (goods_product_id),
 	index (attribute_option_id)
 )charset=utf8;
+
+
+create table kang_cart_goods (
+	cart_goods_id int unsigned auto_increment,
+	member_id int unsigned not null default 0,
+	goods_id int unsigned not null default 0,
+	goods_product_id int unsigned not null default 0,
+	buy_quantity int not null default 0,
+	primary key (cart_goods_id),
+	index (member_id),
+	index (goods_id),
+	index (goods_product_id)
+)charset=utf8;
+
+
+-- 货运地址
+create table kang_address
+(
+	address_id int unsigned auto_increment,
+	member_id int unsigned not null default 0, 
+	name varchar(32) not null default '', 
+	telephone varchar(16) not null default '',
+	company varchar(32) not null default '',
+	country_id int unsigned not null default 0,
+	zone_id int unsigned not null default 0,
+	city_id int unsigned not null default 0,
+	address varchar(255) not null default '',
+	post_code char(6) not null default '',
+	is_default tinyint not null default 1, 
+	primary key (address_id),
+	index (member_id),
+	index (country_id),
+	index (zone_id),
+	index (city_id)
+)charset=utf8;
+
+-- 支付方式
+create table kang_payment
+(
+	payment_id int unsigned auto_increment,
+	`key` varchar(32) not null default '',
+	title varchar(32) not null default '',
+	is_default tinyint not null default 0,
+	enabled tinyint not null default 1,
+	sort_number int not null default 0,
+	primary key (payment_id),
+	unique key (`key`),
+	index (sort_number)
+) charset=utf8;	
+
+-- 配送方式
+create table kang_shipping
+(
+	shipping_id int unsigned auto_increment,
+	`key` varchar(32) not null default '',
+	title varchar(32) not null default '',
+	is_default tinyint not null default 0,
+	enabled tinyint not null default 1,
+	sort_number int not null default 0,
+	primary key (shipping_id),
+	unique key (`key`),
+	index (sort_number)
+) charset=utf8;	
+
+
+create table kang_order
+(
+	order_id int unsigned auto_increment,
+	member_id int unsigned not null default 0,
+	order_time int not null default 0,
+	order_status enum('未确定', '确定', '取消', '删除') not null default '未确定',
+	payment_id int unsigned not null default 0,
+	payment_status enum ('未支付', '已支付') not null default '未支付',
+	address_id int unsigned not null default 0,
+	shipping_id int unsigned not null default 0,
+	shipping_status enum('未发货', '已发货', '已收货') not null default '未发货',
+	total decimal(10, 2) not null default 0,
+	goods_total decimal(10, 2) not null default 0,
+	shipping_total decimal(10, 2) not null default 0,
+	primary key (order_id),
+	index (payment_id),
+	index (address_id),
+	index (shipping_id),
+	index (member_id)
+) charset=utf8;
+
+create table kang_order_goods
+(
+	order_goods_id int unsigned auto_increment,
+	order_id int unsigned not null default 0,
+	goods_id int unsigned not null default 0,
+	goods_product_id int unsigned not null default 0,
+	buy_quantity int not null default 0,
+	buy_price decimal(10, 2) not null default 0,
+	primary key (order_goods_id),
+	index (order_id),
+	index (goods_id),
+	index (goods_product_id)
+) charset=utf8;

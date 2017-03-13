@@ -169,6 +169,9 @@ class GoodsController extends Controller
             M('GoodsAttributeValue')->addAll($value_data);
           
             
+            // 生成HMTL的静态化
+            // 工作与前台的shop/goods是一致
+            $this->staticGoods($goods_id);
             
             // 日志层面管理 
             
@@ -195,6 +198,63 @@ class GoodsController extends Controller
             // 二: 表单展示
             $this->display();
         }
+    }
+
+    public function staticGoods($goods_id) 
+    {
+        if ($goods_id == 0) {
+            $this->redirect('/index', [], 0);
+        }
+
+        $m_goods = D('Home/Goods');
+
+        // 获取商品信息
+        $goods = $m_goods->find($goods_id);
+        $this->assign('goods', $goods);
+
+        // 面包屑信息
+        $breadcrumb = $m_goods->getBreadcrumb($goods_id);
+        $this->assign('breadcrumb', $breadcrumb);
+        // dump($breadcrumb);die;
+         
+        // 图像展示
+        $this->assign('image_list', M('GoodsImage')->where(['goods_id'=>$goods_id])->select());
+
+        // 属性信息
+        // join查询, 获取属性的信息, 及属性的输入类型(输入还是选择)
+        $attribute_list = D('Home/GoodsAttributeValue')->field('gav.*, ga.title attribute_title, at.title type_title')->where(['goods_id'=>$goods_id])->alias('gav')->join('left join __GOODS_ATTRIBUTE__ ga using(goods_attribute_id)')->join('left join __ATTRIBUTE_TYPE__ at using(attribute_type_id)')-> select();
+
+        // 遍历属性列表
+        // 获取属性对应的预设值列表
+        // 将可选的选项属性, 独立存储.
+        $option_list = [];
+        foreach($attribute_list as $key=>$attribute) {
+            // 获取属性对应的预设值列表
+            // 判断是否为多选属性
+            if ($attribute['type_title'] == 'select') {
+                $attribute_list[$key]['option'] = M('AttributeOption')->where(['attribute_option_id'=>['in', $attribute['value']]])->select();
+            }
+
+            // 将可选的选项属性, 独立存储.
+            // 判断是否为选项
+            if ($attribute['is_option'] == '1') {
+                $option_list[] = $attribute_list[$key];
+            }
+        }
+        $this->assign('attribute_list', $attribute_list);
+        $this->assign('option_list', $option_list);
+
+        // dump($attribute_list);
+        
+        // 选项信息
+
+        // 模块@控制器:动作
+        $content = $this->fetch('Home@Shop:goods');
+        // dump($content);
+        // 生成静态html文件
+        $file = './goods/'.$goods_id. '.html';
+        file_put_contents($file, $content);
+        die;
     }
 
 

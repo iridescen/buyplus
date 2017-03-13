@@ -2,14 +2,14 @@
 
 namespace Home\Controller;
 
-use Think\Controller;
 use Think\Model;
 use Think\Verify;
+use Home\Cart\Cart;
 
 /**
  * 会员控制器类
  */
-class MemberController extends Controller
+class MemberController extends CommonController
 {
 
 	/**
@@ -134,8 +134,17 @@ class MemberController extends Controller
 			unset($row['password']);
 			session('member', $row);
 
+			// 登录成功
+			$cart = new Cart;// use Home\Cart\Cart;
+			$cart->mergeCookieGoods();// 合并cookie中的商品
+
 			// 重定向到目标页
-			$this->redirect('/center', [], 0);
+			// 判断session中是否存在login_target
+			if ($login_target = session('login_target')) {
+				$this->redirect($login_target, [], 0);
+			} else {
+				$this->redirect('/center', [], 0);
+			}
 
 		} else {
 			// 展示登陆表单
